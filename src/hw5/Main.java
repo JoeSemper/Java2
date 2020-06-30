@@ -16,8 +16,6 @@ public class Main {
         firstMethod(arr);
         secondMethod(arr);
 
-
-
     }
 
     public static void firstMethod (float arr[]){
@@ -29,6 +27,7 @@ public class Main {
         }
 
         System.out.printf("Время первого метода: %d мс \n", System.currentTimeMillis() - a);
+//        System.out.println(arr[arr.length-1]);
     }
 
     public static void secondMethod (float arr[]){
@@ -37,13 +36,13 @@ public class Main {
 
         Thread t1 = new Thread( ()-> {
             for (int i = 0; i <a1.length ; i++) {
-                a1[i] = (float)(arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+                a1[i] = (float)(a1[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
             }
         });
 
         Thread t2 = new Thread( ()-> {
-            for (int i = HALF; i <a2.length-1; i++) {
-                a1[i] = (float)(arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+            for (int i = 0; i <a2.length-1; i++) {
+                a2[i] = (float)(a2[i] * Math.sin(0.2f + (i+HALF) / 5) * Math.cos(0.2f + (i+HALF) / 5) * Math.cos(0.4f + (i+HALF) / 2));
             }
         });
 
@@ -66,6 +65,7 @@ public class Main {
         System.arraycopy(a2, 0, arr, HALF, HALF-1);
 
         System.out.printf("Время второго метода: %d мс \n", System.currentTimeMillis() - a);
+//        System.out.println(arr[arr.length-1]);
 
     }
 }
